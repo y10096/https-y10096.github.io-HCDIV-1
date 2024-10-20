@@ -1,1 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<title>Assignment 1</title>
+<style>
 
+  /* CSS goes here 
+  
+    E.g. table {
+    }
+  
+  */
+
+</style>
+</head>
+<body>
+
+<h2>Singapore 2-hr weather forecast</h2>
+<h4 id="timestring"></h4>
+<table id="weatherTable">
+    <tr>
+        <th>Area</th>
+        <th>Forecast</th>
+    </tr>
+</table>
+
+<script>
+fetch('https://api-open.data.gov.sg/v2/real-time/api/two-hr-forecast')
+  .then(response => response.json())
+  .then(responsedata => {
+
+    /* JS code goes here.
+    
+    */
+  
+    let timestamp = responsedata.data.items[0].update_timestamp;
+    let forecasts = responsedata.data.items[0].forecasts;
+    
+    console.log(timestamp);
+    console.log(forecasts);
+  
+  });
+
+
+</script>
+</body>
+</html>
