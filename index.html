@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>云南鲜切花产量地图</title>
+    <title>云南鲜切花产量地图1.0</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
         .map {
             width: 1600px; /* 原宽度800px，放大一倍 */
-            height: 1200px; /* 原高度600px，放大一倍 */
+            height: 1000px; /* 原高度600px，放大一倍 */
             margin: 0 auto;
         }
         .tooltip {
@@ -26,14 +26,14 @@
     </style>
 </head>
 <body>
-    <h1 style="text-align: center;">云南鲜切花产量地图</h1>
+    <h1 style="text-align: center;">云南鲜切花产量地图1.0</h1>
     <div id="map" class="map"></div>
     <div id="tooltip" class="tooltip" style="display: none;"></div>
 
     <script>
         // 地图容器和设置
         const width = 1600; // 放大一倍
-        const height = 1200; // 放大一倍
+        const height = 1000; // 放大一倍
         const colorScale = d3.scaleSequential(d3.interpolateReds); // 使用粉红色渐变
 
         // 初始化 SVG
