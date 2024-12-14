@@ -36,7 +36,7 @@
 
     // 加载数据
     Promise.all([
-      d3.json("data/yunnan.json"),    // GeoJSON 文件
+      d3.json("data/云南省1_530000_full.json"),    // GeoJSON 文件
       d3.json("data/flower-data.json") // 鲜切花数据
     ]).then(([geoData, flowerData]) => {
       // 创建投影和地理路径生成器
