@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>云南鲜切花产量地图1</title>
+  <title>云南鲜切花产量地图2</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -49,7 +49,7 @@
 </head>
 <body>
 
-  <h1>云南鲜切花产量地图1</h1>
+  <h1>云南鲜切花产量地图2</h1>
   <svg></svg>
   <div class="legend-container">
     <div class="legend-bar" id="legend"></div>
@@ -66,10 +66,15 @@
       d3.json("云南省1_530000_full.json"),
       d3.csv("fresh cut flower1( million branches.csv")
     ]).then(([geoData, csvData]) => {
+      console.log("GeoJSON 数据:", geoData);
+      console.log("CSV 数据:", csvData);
+
       // 合并产量数据到地图数据
       geoData.features.forEach(feature => {
-        const cityData = csvData.find(row => row.city === feature.properties.name);
+        const cityName = feature.properties.name.trim(); // 去除两边多余空格
+        const cityData = csvData.find(row => row.city.trim() === cityName);
         feature.properties.production = cityData ? +cityData["Fresh Cut Flowers"] : 0;
+        console.log(`匹配: ${cityName} -> ${feature.properties.production} 万支`);
       });
 
       const projection = d3.geoMercator()
@@ -118,9 +123,10 @@
         .style("flex-grow", 1)
         .text(d => Math.round(d));
 
-    }).catch(error => console.error(error));
+    }).catch(error => {
+      console.error("加载数据出错:", error);
+    });
   </script>
 
 </body>
 </html>
-
