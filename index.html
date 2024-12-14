@@ -6,21 +6,31 @@
   <title>云南省鲜切花产量地图</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    #map {
+      margin: 0 auto;
+    }
     .tooltip {
       position: absolute;
-      background-color: #fff;
+      background-color: white;
       padding: 5px 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
       pointer-events: none;
       font-size: 14px;
+      opacity: 0;
     }
   </style>
 </head>
 <body>
   <h1>云南省鲜切花产量地图</h1>
   <div id="map"></div>
-  <div class="tooltip" id="tooltip" style="opacity: 0;"></div>
+  <div class="tooltip" id="tooltip"></div>
 
   <script>
     // 设置画布大小
@@ -36,15 +46,15 @@
 
     // 加载数据
     Promise.all([
-      d3.json("data/云南省1_530000_full.json"),    // GeoJSON 文件
-      d3.json("data/flower-data.json") // 鲜切花数据
+      d3.json("云南省1_530000_full.json"), // GeoJSON 文件
+      d3.json("flower-data.json")        // 鲜切花数据
     ]).then(([geoData, flowerData]) => {
-      // 创建投影和地理路径生成器
+      // 创建投影和路径生成器
       const projection = d3.geoMercator()
                            .fitSize([width, height], geoData);
       const path = d3.geoPath().projection(projection);
 
-      // 生成颜色比例尺
+      // 创建颜色比例尺
       const colorScale = d3.scaleLinear()
                            .domain([0, d3.max(Object.values(flowerData))])
                            .range(["#ffe6f2", "#ff005a"]);
