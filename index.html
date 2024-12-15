@@ -15,7 +15,7 @@
     #container {
       display: flex;
       justify-content: flex-start; /* 左对齐布局 */
-      align-items: flex-start; /* 顶部对齐 */
+      align-items: center; /* 保证地图和矩形中心对齐 */
       gap: 20px; /* 左右间距 */
       margin-left: 50px; /* 整体左移 */
     }
@@ -66,10 +66,12 @@
       border: 1px solid #ccc;
       border-radius: 5px;
       padding: 15px;
-      width: 300px;
-      line-height: 1.25; /* 设置1.25倍行距 */
-      font-size: 14px; /* 调整文字大小 */
+      width: 600px; /* 原宽度的2倍 */
+      font-size: 16px; /* 放大文字 */
+      line-height: 1.25; /* 保持行距 */
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      position: relative; /* 便于调整垂直位置 */
+      top: 50px; /* 向下调整50px，保持与地图中心点平齐 */
     }
   </style>
 </head>
