@@ -9,7 +9,7 @@
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 100px 0 0 0;
+      padding: 50px 0 0 0;
       text-align: center;
     }
     #map {
@@ -28,10 +28,10 @@
     .map-title {
       color: #8a3e52;
       font-size: 18px;
-      margin-top: 10px;
+      margin-bottom: 10px; /* 调整标题与按钮之间的距离 */
     }
     #year-buttons {
-      margin-bottom: 20px;
+      margin-bottom: 20px; /* 调整按钮与地图之间的距离 */
     }
     #year-buttons button {
       margin: 5px;
@@ -52,6 +52,7 @@
   </style>
 </head>
 <body>
+  <h1 class="map-title">2022 Yunnan Province Fresh-Cut Flower Production Map</h1>
   <div id="year-buttons">
     <button data-year="2022" class="active">2022</button>
     <button data-year="2021">2021</button>
@@ -59,7 +60,6 @@
   </div>
   <div id="map"></div>
   <div class="tooltip" id="tooltip"></div>
-  <h1 class="map-title">2022 Yunnan Province Fresh-Cut Flower Production Map</h1>
 
   <script>
     const width = 800, height = 600;
@@ -77,7 +77,7 @@
     // 加载数据
     Promise.all([
       d3.json("云南省1_530000_full.json"),
-      d3.json("flower1-data.json") // 包含多个年份的数据
+      d3.json("flower-data.json") // 包含多个年份的数据
     ]).then(([geoData, flowerData]) => {
       const projection = d3.geoMercator().fitSize([width, height], geoData);
       const path = d3.geoPath().projection(projection);
