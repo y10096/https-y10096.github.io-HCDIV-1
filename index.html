@@ -9,7 +9,7 @@
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 100px 0 0 0; /* 页面整体下移10像素 */
+      padding: 100px 0 0 0;
       text-align: center;
     }
     #map {
@@ -30,9 +30,33 @@
       font-size: 18px;
       margin-top: 10px;
     }
+    #year-buttons {
+      margin-bottom: 20px;
+    }
+    #year-buttons button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      background-color: #f0f0f0;
+      cursor: pointer;
+    }
+    #year-buttons button:hover {
+      background-color: #ddd;
+    }
+    #year-buttons button.active {
+      background-color: #8a3e52;
+      color: white;
+    }
   </style>
 </head>
 <body>
+  <div id="year-buttons">
+    <button data-year="2022" class="active">2022</button>
+    <button data-year="2021">2021</button>
+    <button data-year="2020">2020</button>
+  </div>
   <div id="map"></div>
   <div class="tooltip" id="tooltip"></div>
   <h1 class="map-title">2022 Yunnan Province Fresh-Cut Flower Production Map</h1>
@@ -43,60 +67,91 @@
     const svg = d3.select("#map")
                   .append("svg")
                   .attr("width", width)
-                  .attr("height", height); // 不设置背景颜色，保持透明
+                  .attr("height", height);
 
     const tooltip = d3.select("#tooltip");
+    const mapTitle = d3.select(".map-title");
 
+    let currentYear = "2022"; // 默认年份
+
+    // 加载数据
     Promise.all([
       d3.json("云南省1_530000_full.json"),
-      d3.json("flower-data.json")
+      d3.json("flower1-data.json") // 包含多个年份的数据
     ]).then(([geoData, flowerData]) => {
       const projection = d3.geoMercator().fitSize([width, height], geoData);
       const path = d3.geoPath().projection(projection);
 
       const colorScale = d3.scaleLinear()
-                           .domain([0, d3.max(Object.values(flowerData))])
                            .range(["#ffe6f2", "#ff005a"]);
 
-      svg.selectAll("path")
-         .data(geoData.features)
-         .enter()
-         .append("path")
-         .attr("d", path)
-         .attr("fill", d => {
-           const cityName = d.properties.name;
-           const value = flowerData[cityName] || 0;
-           return colorScale(value);
-         })
-         .attr("stroke", "#fff")
-         .attr("stroke-width", 1)
-         .on("mouseover", function(event, d) {
-           d3.select(this)
-             .attr("stroke-width", 3)
-             .attr("fill", d => {
-               const cityName = d.properties.name;
-               const value = flowerData[cityName] || 0;
-               return d3.color(colorScale(value)).brighter(0.7);
-             });
+      function updateMap(year) {
+        const yearData = flowerData[year];
+        colorScale.domain([0, d3.max(Object.values(yearData))]);
 
-           const cityName = d.properties.name;
-           const value = flowerData[cityName] || 0;
-           tooltip.transition().duration(200).style("opacity", 1);
-           tooltip.html(`<strong>${cityName}</strong><br>Fresh-Cut Flower Production: ${value} million branches`)
-                  .style("left", (event.pageX + 10) + "px")
-                  .style("top", (event.pageY - 20) + "px");
-         })
-         .on("mouseout", function(event, d) {
-           d3.select(this)
-             .attr("stroke-width", 1)
-             .attr("fill", d => {
-               const cityName = d.properties.name;
-               const value = flowerData[cityName] || 0;
-               return colorScale(value);
-             });
+        // 更新地图
+        svg.selectAll("path")
+           .data(geoData.features)
+           .join("path")
+           .attr("d", path)
+           .attr("fill", d => {
+             const cityName = d.properties.name;
+             const value = yearData[cityName] || 0;
+             return colorScale(value);
+           })
+           .attr("stroke", "#fff")
+           .attr("stroke-width", 1)
+           .on("mouseover", function(event, d) {
+             d3.select(this)
+               .attr("stroke-width", 3)
+               .attr("fill", d => {
+                 const cityName = d.properties.name;
+                 const value = yearData[cityName] || 0;
+                 return d3.color(colorScale(value)).brighter(0.7);
+               });
 
-           tooltip.transition().duration(200).style("opacity", 0);
-         });
+             const cityName = d.properties.name;
+             const value = yearData[cityName] || 0;
+             tooltip.transition().duration(200).style("opacity", 1);
+             tooltip.html(`<strong>${cityName}</strong><br>Fresh-Cut Flower Production: ${value} million branches`)
+                    .style("left", (event.pageX + 10) + "px")
+                    .style("top", (event.pageY - 20) + "px");
+           })
+           .on("mouseout", function(event, d) {
+             d3.select(this)
+               .attr("stroke-width", 1)
+               .attr("fill", d => {
+                 const cityName = d.properties.name;
+                 const value = yearData[cityName] || 0;
+                 return colorScale(value);
+               });
+
+             tooltip.transition().duration(200).style("opacity", 0);
+           });
+
+        // 更新标题
+        mapTitle.text(`${year} Yunnan Province Fresh-Cut Flower Production Map`);
+      }
+
+      // 初始化地图
+      updateMap(currentYear);
+
+      // 添加年份切换按钮功能
+      d3.select("#year-buttons").selectAll("button")
+        .on("click", function() {
+          const selectedYear = d3.select(this).attr("data-year");
+
+          if (selectedYear !== currentYear) {
+            currentYear = selectedYear;
+
+            // 更新按钮样式
+            d3.select("#year-buttons").selectAll("button").classed("active", false);
+            d3.select(this).classed("active", true);
+
+            // 更新地图数据
+            updateMap(currentYear);
+          }
+        });
     }).catch(error => console.error("Error loading data:", error));
   </script>
 </body>
