@@ -10,28 +10,27 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 50px 0 0 0;
-      text-align: center;
+      text-align: left; /* 左对齐 */
     }
-    #map {
-      margin: 0 auto;
+    #container {
+      display: flex;
+      justify-content: flex-start; /* 左对齐布局 */
+      align-items: flex-start; /* 顶部对齐 */
+      gap: 20px; /* 左右间距 */
+      margin-left: 50px; /* 整体左移 */
     }
-    .tooltip {
-      position: absolute;
-      background-color: white;
-      padding: 5px 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      pointer-events: none;
-      font-size: 14px;
-      opacity: 0;
+    #map-container {
+      max-width: 800px;
     }
     .map-title {
       color: #8a3e52;
       font-size: 18px;
-      margin-bottom: 10px; /* 调整标题与按钮之间的距离 */
+      text-align: center; /* 标题居中 */
+      margin-bottom: 10px;
     }
     #year-buttons {
-      margin-bottom: 20px; /* 调整按钮与地图之间的距离 */
+      text-align: center;
+      margin-bottom: 20px;
     }
     #year-buttons button {
       margin: 5px;
@@ -49,16 +48,51 @@
       background-color: #8a3e52;
       color: white;
     }
+    #map {
+      margin: 0 auto;
+    }
+    .tooltip {
+      position: absolute;
+      background-color: white;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      pointer-events: none;
+      font-size: 14px;
+      opacity: 0;
+    }
+    #description-container {
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 15px;
+      width: 300px;
+      line-height: 1.25; /* 设置1.25倍行距 */
+      font-size: 14px; /* 调整文字大小 */
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
   </style>
 </head>
 <body>
-  <h1 class="map-title">Yunnan Province Fresh-Cut Flower Production Map</h1>
-  <div id="year-buttons">
-    <button data-year="2022" class="active">2022</button>
-    <button data-year="2021">2021</button>
-    <button data-year="2020">2020</button>
+  <div id="container">
+    <!-- 地图和控制按钮 -->
+    <div id="map-container">
+      <h1 class="map-title">Yunnan Province Fresh-Cut Flower Production Map</h1>
+      <div id="year-buttons">
+        <button data-year="2022" class="active">2022</button>
+        <button data-year="2021">2021</button>
+        <button data-year="2020">2020</button>
+      </div>
+      <div id="map"></div>
+    </div>
+
+    <!-- 描述文本 -->
+    <div id="description-container">
+      <p>The map on the left shows the production of cut flowers in Yunnan Province during the three-year period from 2020 to 2022, with shades of colour indicating the amount of cut flowers produced.</p>
+      <p>It can be seen that Kunming is the largest city in Yunnan Province in terms of cut flower production, and Chuxiong has a significant increase in cut flower production between 2021 and 2022.</p>
+    </div>
   </div>
-  <div id="map"></div>
+
   <div class="tooltip" id="tooltip"></div>
 
   <script>
