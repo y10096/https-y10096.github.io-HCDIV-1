@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yunnan Province Fresh-Cut Flower Production Map</title>
+  <title>Yunnan Province Fresh-Cut Flower Production Map1</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
     body {
@@ -28,7 +28,7 @@
   </style>
 </head>
 <body>
-  <h1>Yunnan Province Fresh-Cut Flower Production Map</h1>
+  <h1>Yunnan Province Fresh-Cut Flower Production Map1</h1>
   <div id="map"></div>
   <div class="tooltip" id="tooltip"></div>
 
@@ -70,7 +70,8 @@
            const value = flowerData[cityName] || 0;
            return colorScale(value);
          })
-         .attr("stroke", "#333")
+         .attr("stroke", "#fff") // Set stroke to white
+         .attr("stroke-width", 1) // Optional: adjust stroke width
          .on("mouseover", function(event, d) {
            const cityName = d.properties.name;
            const value = flowerData[cityName] || 0;
@@ -89,3 +90,4 @@
   </script>
 </body>
 </html>
+
