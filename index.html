@@ -38,7 +38,8 @@
     const svg = d3.select("#map")
                   .append("svg")
                   .attr("width", width)
-                  .attr("height", height);
+                  .attr("height", height)
+                  .style("background-color", "#fdffe8"); // 设置背景颜色为淡黄色
 
     const tooltip = d3.select("#tooltip");
 
