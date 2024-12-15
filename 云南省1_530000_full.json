@@ -5,7 +5,7 @@
       "type": "Feature",
       "properties": {
         "adcode": 530100,
-        "name": "昆明市",
+        "name": "Kunming",
         "center": [
           102.712251,
           25.040609
@@ -1459,7 +1459,7 @@
       "type": "Feature",
       "properties": {
         "adcode": 530300,
-        "name": "曲靖市",
+        "name": "Qujing",
         "center": [
           103.797851,
           25.501557
@@ -3085,7 +3085,7 @@
       "type": "Feature",
       "properties": {
         "adcode": 530400,
-        "name": "玉溪市",
+        "name": "Yuxi",
         "center": [
           102.543907,
           24.350461
@@ -4539,7 +4539,7 @@
       "type": "Feature",
       "properties": {
         "adcode": 530500,
-        "name": "保山市",
+        "name": "Baoshan",
         "center": [
           99.167133,
           25.111802
@@ -5617,7 +5617,7 @@
       "type": "Feature",
       "properties": {
         "adcode": 530600,
-        "name": "昭通市",
+        "name": "Zhaotong",
         "center": [
           103.717216,
           27.336999
@@ -7067,7 +7067,7 @@
       "type": "Feature",
       "properties": {
         "adcode": 530700,
-        "name": "丽江市",
+        "name": "Lijiang",
         "center": [
           100.233026,
           26.872108
@@ -8349,7 +8349,7 @@
       "type": "Feature",
       "properties": {
         "adcode": 530800,
-        "name": "普洱市",
+        "name": "Puer",
         "center": [
           100.972344,
           22.777321
@@ -10015,7 +10015,7 @@
       "type": "Feature",
       "properties": {
         "adcode": 530900,
-        "name": "临沧市",
+        "name": "Lincang",
         "center": [
           100.08697,
           23.886567
@@ -11025,7 +11025,7 @@
       "type": "Feature",
       "properties": {
         "adcode": 532300,
-        "name": "楚雄彝族自治州",
+        "name": "Chuxiong",
         "center": [
           101.546046,
           25.041988
@@ -12351,7 +12351,7 @@
       "type": "Feature",
       "properties": {
         "adcode": 532500,
-        "name": "红河哈尼族彝族自治州",
+        "name": "Honghe",
         "center": [
           103.384182,
           23.366775
@@ -14173,7 +14173,7 @@
       "type": "Feature",
       "properties": {
         "adcode": 532600,
-        "name": "文山壮族苗族自治州",
+        "name": "Wenshan",
         "center": [
           104.24401,
           23.36951
@@ -15535,7 +15535,7 @@
       "type": "Feature",
       "properties": {
         "adcode": 532800,
-        "name": "西双版纳傣族自治州",
+        "name": "Xishuangbanna",
         "center": [
           100.797941,
           22.001724
@@ -16453,7 +16453,7 @@
       "type": "Feature",
       "properties": {
         "adcode": 532900,
-        "name": "大理白族自治州",
+        "name": "Dali",
         "center": [
           100.225668,
           25.589449
@@ -17795,7 +17795,7 @@
       "type": "Feature",
       "properties": {
         "adcode": 533100,
-        "name": "德宏傣族景颇族自治州",
+        "name": "Dehong",
         "center": [
           98.578363,
           24.436694
@@ -18577,7 +18577,7 @@
       "type": "Feature",
       "properties": {
         "adcode": 533300,
-        "name": "怒江傈僳族自治州",
+        "name": "Nujiang",
         "center": [
           98.854304,
           25.850949
@@ -19943,7 +19943,7 @@
       "type": "Feature",
       "properties": {
         "adcode": 533400,
-        "name": "迪庆藏族自治州",
+        "name": "Diqing",
         "center": [
           99.706463,
           27.826853
