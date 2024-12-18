@@ -85,6 +85,8 @@
         <button data-year="2022" class="active">2022</button>
         <button data-year="2021">2021</button>
         <button data-year="2020">2020</button>
+        <button data-year="2019">2019</button>
+        <button data-year="2018">2018</button>
       </div>
       <div id="map"></div>
     </div>
@@ -114,7 +116,7 @@
     // 加载数据
     Promise.all([
       d3.json("云南省1_530000_full.json"),
-      d3.json("flower1-data.json") // 包含多个年份的数据
+      d3.json("flower2-data.json") // 包含多个年份的数据
     ]).then(([geoData, flowerData]) => {
       const projection = d3.geoMercator().fitSize([width, height], geoData);
       const path = d3.geoPath().projection(projection);
